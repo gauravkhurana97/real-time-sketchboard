@@ -1,5 +1,5 @@
 // to create createBox for image ,sticky
-function createBox(){
+function createBox() {
   const stickyPad = document.createElement("div");
   const navBar = document.createElement("div");
   const writingPad = document.createElement("div");
@@ -16,15 +16,15 @@ function createBox(){
   stickyPad.appendChild(writingPad);
   body.appendChild(stickyPad);
   // create sticky
-  close.addEventListener("click", function() {
+  close.addEventListener("click", function () {
     stickyPad.remove();
   });
 
   let isMinimized = false;
-  minimize.addEventListener("click", function() {
-    isMinimized == false
-      ? (writingPad.style.display = "none")
-      : (writingPad.style.display = "block");
+  minimize.addEventListener("click", function () {
+    isMinimized == false ?
+      (writingPad.style.display = "none") :
+      (writingPad.style.display = "block");
     isMinimized = !isMinimized;
   });
   let initialX = null;
@@ -32,13 +32,13 @@ function createBox(){
   let isStickyDown = false;
 
   // added move sticky logic
-  navBar.addEventListener("mousedown", function(e) {
+  navBar.addEventListener("mousedown", function (e) {
     initialX = e.clientX;
     initialY = e.clientY;
     isStickyDown = true;
   });
 
-  navBar.addEventListener("mousemove", function(e) {
+  navBar.addEventListener("mousemove", function (e) {
     if (isStickyDown == true) {
       let finalX = e.clientX;
       let finalY = e.clientY;
@@ -46,7 +46,10 @@ function createBox(){
       let diffX = finalX - initialX;
       let diffY = finalY - initialY;
 
-      let { top, left } = stickyPad.getBoundingClientRect();
+      let {
+        top,
+        left
+      } = stickyPad.getBoundingClientRect();
 
       stickyPad.style.top = top + diffY + "px";
       stickyPad.style.left = left + diffX + "px";
@@ -56,11 +59,11 @@ function createBox(){
     }
   });
   // sticky => mouseup
-  navBar.addEventListener("mouseup", function() {
+  navBar.addEventListener("mouseup", function () {
     isStickyDown = false;
   });
   // pointer => moved off sticky
-  navBar.addEventListener("mouseleave", function() {
+  navBar.addEventListener("mouseleave", function () {
     isStickyDown = false;
   });
   document.body.appendChild(stickyPad);
@@ -70,6 +73,7 @@ function createBox(){
 
 // utility fn to handle handleHamburger icon
 let isActive = true;
+
 function handleHamburger() {
   if (isActive == true) {
     hamburger.classList.remove("is-active");
@@ -97,6 +101,7 @@ const tools = document.querySelectorAll(".tool");
 const inputs = document.querySelectorAll("input[type=range]");
 // console.log(tool);
 const ImageInput = document.querySelector(".upload-img");
+
 function handleToolChange(tool) {
   if (tool == "pencil") {
     if (Activetool == "pencil") {
@@ -131,4 +136,28 @@ function handleToolChange(tool) {
   } else if (tool == "sticky") {
     createSticky();
   }
+}
+
+
+//***********Undo stack****** */
+let undoStack = [];
+let redoStack = [];
+
+function undoMaker() {
+  if (undoStack.length > 0) {
+    redoStack.push(undoStack.pop());
+    redraw();
+    return true;
+  }
+  return false;
+}
+
+// **********************redo Stack
+function redoMaker() {
+  if (redoStack.length > 0) {
+    undoStack.push(redoStack.pop());
+    redraw();
+    return true;
+  }
+  return false;
 }
