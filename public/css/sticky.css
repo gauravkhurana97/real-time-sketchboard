@@ -11,12 +11,14 @@
   position: absolute;
   top: 9px;
 }
+
 .writing-pad {
   position: absolute;
   max-height: 200px;
   max-width: 246px;
   box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.4);
 }
+
 .minimize {
   z-index: 50;
   right: 36px;
@@ -29,6 +31,7 @@
   position: absolute;
   top: 9px;
 }
+
 .sticky-pad {
   z-index: 40;
   /* min-height: 30px; */
@@ -41,8 +44,9 @@
   top: 50%;
   border-radius: 0 15px 0 15px;
   box-shadow: 9px 8px 18px 3px rgba(0, 0, 0, 0.4);
-  
+
 }
+
 .sticky-pad .nav {
   z-index: 41;
   height: 30px;
@@ -50,14 +54,16 @@
   position: absolute;
   top: 0;
   left: 0;
- 
+
   border-radius: 0px 15px 0px 0px;
 }
- .nav:hover {
+
+.nav:hover {
   cursor: move;
 }
 
-.sticky-pad textarea,.sticky-pad img {
+.sticky-pad textarea,
+.sticky-pad img {
   min-height: 200px;
   width: 100%;
 
@@ -72,13 +78,16 @@
   text-align: center;
   color: grey;
 }
+
 .sticky-pad textarea:focus,
 .sticky-pad textarea:active {
   outline: none;
 }
-.minimize:hover{
-cursor: pointer;
+
+.minimize:hover {
+  cursor: pointer;
 }
-.close:hover{
-cursor: pointer;
+
+.close:hover {
+  cursor: pointer;
 }
