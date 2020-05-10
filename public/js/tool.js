@@ -1,5 +1,5 @@
 // connect to socket server
-// const socket = io.connect("");
+const socket = io.connect("https://real-time-sketchboard.herokuapp.com/");
 
 // *********************************Basic Setup
 const board = document.querySelector(".board");
